@@ -1,0 +1,40 @@
+<app-edit-modal (hideModalEvent)="hideModal()" [showModal]="hideEditModal" [description]="modalDescriptionField" [amount]="modalAmountField" [id]="modalIdField"></app-edit-modal>
+
+
+<div class="result">
+    <h1>{{total}}</h1>
+</div>
+
+<div class="controller">
+    <select #expenseType>
+        <option value="EXP">EXPENSE</option>
+        <option value="INC">INCOME</option>
+    </select>
+
+    <input type="text" #expenseDesc (change)="getTextFieldValue($event)" [class]="descHasErrors ? 'border-error' : ''"/>
+
+    <input type="text" #amount [class]="typeHasErrors ? 'border-error' : ''"/>
+
+    <input type="button" value="SUBMIT" (click)="handleSubmission()"/>
+</div>
+
+<div class="container">
+    <ul class="items-container expenses-container">
+        <li class="title">Expenses</li>
+        @for (item of items; track $index) {
+            @if (item.type == "EXP") {
+                <li class="item"><span>{{item.description}}</span><span>{{item.amount}} <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id, item.description, item.amount)"></i> {{"  "}} 
+                    <i class="fa-solid fa-x"(click)="deleteRecord(item.id)"></i></span></li>
+            }
+        }
+    </ul>
+    <ul class="items-container income-container">
+        <li class="title">Income</li>
+        @for (item of items; track $index) {
+            @if (item.type == "INC") {
+                <li class="item"><span>{{item.description}}</span><span>{{item.amount}} <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id, item.description, item.amount)"></i> {{"  "}} 
+                    <i class="fa-solid fa-x" (click)="deleteRecord(item.id)"></i></span></li>
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+<div class="full-page" [hidden]="showModal">
+    <div class="modal">
+
+        <input type="text" name="id" id="id" hidden [value]="id"/>
+        <input type="text" name="desc" id="desc" placeholder="Description" [value]="description" [(ngModel)]="descriptionModelVal"/>
+        <input type="text" name="amount" id="amount" placeholder="Amount" [value]="amount" [(ngModel)]="amountModelVal"/>
+
+        <div class="buttons">
+            <input class="btn" type="button" value="SAVE" (click)="saveChanges()"/>
+            <input class="btn" type="button" value="CENCEL" (click)="hideModal()"/>
+        </div>
+
+    </div>
+</div>
