@@ -101,15 +101,27 @@ export class BudgetComponent implements OnInit{
     modalDescriptionField : string = '';
     modalAmountField : number = 0;
     modalIdField : number = 0;
+    modalSelectedTypeField : string = '';
 
-    editItem(id : number, desc : string, amount : number) {
+    editItem(id : number, desc : string, amount : number, type : string) {
       this.hideEditModal = false;
       this.modalDescriptionField = desc;
       this.modalAmountField = amount;
       this.modalIdField = id;
+      this.modalSelectedTypeField = type;
     }
 
     hideModal(){
       this.hideEditModal = true;
+      this.budgetService.getItems().subscribe(response => {this.items = response.result;
+        this.total = 0;
+        this.items.forEach(item => {
+          if(item.type == "EXP") {
+            this.total -= item.amount;
+          } else {
+            this.total += item.amount;
+          }
+        })
+      })
     }
 }

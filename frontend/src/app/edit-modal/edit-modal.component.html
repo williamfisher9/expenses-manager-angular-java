@@ -2,6 +2,12 @@
     <div class="modal">
 
         <input type="text" name="id" id="id" hidden [value]="id"/>
+
+        <select>
+            <option value="EXP" [defaultSelected]="selectedType == 'Expenses' ? true : false">Expenses</option>
+            <option value="INC" [defaultSelected]="selectedType == 'Income' ? true : false">Income</option>
+        </select>
+
         <input type="text" name="desc" id="desc" placeholder="Description" [value]="description" [(ngModel)]="descriptionModelVal"/>
         <input type="text" name="amount" id="amount" placeholder="Amount" [value]="amount" [(ngModel)]="amountModelVal"/>
 

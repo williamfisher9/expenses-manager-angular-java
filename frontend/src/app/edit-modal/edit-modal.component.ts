@@ -18,6 +18,7 @@ export class EditModalComponent {
   @Input() amount : number = 0;
   @Input() showModal : boolean = true;
   @Input() id : number = 0;
+  @Input() selectedType : string = '';
 
   @Output() hideModalEvent = new EventEmitter<boolean>();
 
@@ -29,18 +30,8 @@ export class EditModalComponent {
   amountModelVal : number = 0;
 
   saveChanges(){
-    /*this.http.put(`http://localhost:8080/api/v1/expenses`, {id: this.id, amount: this.amountVal.nativeElement.value, 
-      description: this.descriptionVal.nativeElement.value, type: "EXP"}).pipe(
-        switchMap(() => {
-          return this.http.get("http://localhost:8080/api/v1/expenses").pipe(map(response => {
-            console.log(response);
-            return response;
-          }));
-       }
-      )).subscribe(response => console.log(response))*/
-
-      console.log(this.descriptionModelVal)
-      console.log(this.amountModelVal)
+    this.http.put(`http://localhost:8080/api/v1/expenses`, {id: this.id, amount: this.amountModelVal, 
+      description: this.descriptionModelVal, type: "EXP"}).subscribe(() => this.hideModalEvent.emit(false));
   }
 
 }
