@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BudgetService } from '../services/budget.service';
 import { Item } from '../model/item';
 import { EditModalComponent } from "../edit-modal/edit-modal.component";
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-budget',
   standalone: true,
-  imports: [EditModalComponent],
+  imports: [EditModalComponent, CurrencyPipe],
   templateUrl: './budget.component.html',
   styleUrl: './budget.component.css'
 })
