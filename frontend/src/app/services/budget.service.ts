@@ -12,7 +12,12 @@ export class BudgetService {
 
   getItems() : Observable<any>{
     return this.http.get("http://localhost:8080/api/v1/expenses").pipe(map(response => {
-      console.log(response);
+      return response;
+    }));
+  }
+
+  getItemById(id : number) : Observable<any>{
+    return this.http.get("http://localhost:8080/api/v1/expenses/" + id).pipe(map(response => {
       return response;
     }));
   }
@@ -21,7 +26,6 @@ export class BudgetService {
     return this.http.post("http://localhost:8080/api/v1/expenses", item).pipe(
       switchMap(() => {
         return this.http.get("http://localhost:8080/api/v1/expenses").pipe(map(response => {
-          console.log(response);
           return response;
         }));
      }
@@ -32,7 +36,6 @@ export class BudgetService {
     return this.http.delete(`http://localhost:8080/api/v1/expenses/${id}`).pipe(
       switchMap(() => {
         return this.http.get("http://localhost:8080/api/v1/expenses").pipe(map(response => {
-          console.log(response);
           return response;
         }));
      }

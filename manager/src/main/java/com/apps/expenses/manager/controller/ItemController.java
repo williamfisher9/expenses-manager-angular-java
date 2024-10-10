@@ -62,11 +62,9 @@ public class ItemController {
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Map<String, Object>> updateItem(@Valid @RequestBody Item item){
-        System.out.println(item.getId());
         Map<String, Object> result = new HashMap<>();
         result.put("result", service.updateItem(item));
         result.put("status", 200);
-
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

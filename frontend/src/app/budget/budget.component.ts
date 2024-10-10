@@ -38,7 +38,7 @@ export class BudgetComponent implements OnInit{
 
   typeHasErrors : boolean = false;
   descHasErrors : boolean = false;
-  hideEditModal : boolean = true;
+  
 
   handleSubmission() {
     this.typeHasErrors = false;
@@ -79,10 +79,6 @@ export class BudgetComponent implements OnInit{
     }
   }
 
-  getTextFieldValue(e : any){
-    console.log(e.target.value)
-  }
-
   deleteRecord(id: number) {
     this.budgetService.deleteItem(id)
     .subscribe(response => {
@@ -103,13 +99,17 @@ export class BudgetComponent implements OnInit{
     modalAmountField : number = 0;
     modalIdField : number = 0;
     modalSelectedTypeField : string = '';
+    hideEditModal : boolean = true;
 
-    editItem(id : number, desc : string, amount : number, type : string) {
-      this.hideEditModal = false;
-      this.modalDescriptionField = desc;
-      this.modalAmountField = amount;
-      this.modalIdField = id;
-      this.modalSelectedTypeField = type;
+    editItem(id : number) {
+      console.log(id)
+      this.budgetService.getItemById(id).subscribe(response => {
+        this.modalDescriptionField = response.result.description;
+          this.modalAmountField = response.result.amount;
+          this.modalIdField = response.result.id;
+          this.modalSelectedTypeField = response.result.type;
+          this.hideEditModal = false;
+      })
     }
 
     hideModal(){

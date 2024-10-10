@@ -10,16 +10,23 @@ import { map, switchMap } from 'rxjs';
   templateUrl: './edit-modal.component.html',
   styleUrl: './edit-modal.component.css'
 })
-export class EditModalComponent {
+export class EditModalComponent{
 
   constructor(private http : HttpClient) {
+
+    console.log("------------------")
+      console.log(this.selectedType)
   }
+
+  
 
   @Input() description : string = '';
   @Input() amount : number = 0;
   @Input() showModal : boolean = true;
   @Input() id : number = 0;
-  @Input() selectedType! : string;
+  @Input() selectedType : string = 'NNN';
+
+
 
   @Output() hideModalEvent = new EventEmitter<boolean>();
 
@@ -33,13 +40,9 @@ export class EditModalComponent {
 
   updateDescriptionModelField(e:any) {
     this.description = e.target.value;
-    console.log( e.target.value)
   }
 
   saveChanges(){
-    console.log(this.selectedType)
-    console.log(this.amount)
-    console.log(this.description)
     this.amountHasErrors = false;
     this.descriptionHasErrors = false;
 
@@ -54,9 +57,13 @@ export class EditModalComponent {
 
 
     if(!this.amountHasErrors && !this.descriptionHasErrors){
-      this.http.put(`http://localhost:8080/api/v1/expenses`, {id: this.id, amount: this.amount, 
+      this.http.put(`http://localhost:8080/api/v1/expenses`, {id: this.id, amount: this.amount,
         description: this.description, type: this.selectedType}).subscribe(() => this.hideModalEvent.emit(false));
     }
+  }
+
+  updateSelectedType(e : any){
+    this.selectedType = e.target.value
   }
 
 }

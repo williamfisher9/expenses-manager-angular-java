@@ -18,7 +18,7 @@
         <option value="INC">INCOME</option>
     </select>
 
-    <input type="text" #expenseDesc (change)="getTextFieldValue($event)" [class]="descHasErrors ? 'border-error' : ''"/>
+    <input type="text" #expenseDesc [class]="descHasErrors ? 'border-error' : ''"/>
 
     <input type="text" #amount [class]="typeHasErrors ? 'border-error' : ''"/>
 
@@ -31,7 +31,7 @@
         @for (item of items; track $index) {
             @if (item.type == "EXP") {
                 <li class="item"><span>{{item.description}}</span><span>{{item.amount | currency: 'USD'}} 
-                    <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id, item.description, item.amount, item.type)"></i> {{"  "}} 
+                    <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id)"></i> {{"  "}} 
                     <i class="fa-solid fa-x"(click)="deleteRecord(item.id)"></i></span>
                 </li>
             }
@@ -43,7 +43,7 @@
             @if (item.type == "INC") {
                 <li class="item">
                     <span>{{item.description}}</span>
-                    <span>{{item.amount | currency: 'USD'}} <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id, item.description, item.amount, item.type)"></i> {{"  "}} 
+                    <span>{{item.amount | currency: 'USD'}} <i class="fa-regular fa-pen-to-square" (click)="editItem(item.id)"></i> {{"  "}} 
                     <i class="fa-solid fa-x" (click)="deleteRecord(item.id)"></i></span>
                 </li>
             }

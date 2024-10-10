@@ -50,7 +50,6 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Item updateItem(Item item) {
-        System.out.println(item);
         return repository.save(item);
     }
 }

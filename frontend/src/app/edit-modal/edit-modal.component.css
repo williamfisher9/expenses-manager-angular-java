@@ -36,6 +36,13 @@
     font-size: 1.1rem;
 }
 
+.modal > .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .modal > .buttons > .btn {
     width: 125px;
     height: 50px;
@@ -44,7 +51,6 @@
     outline: none;
     color: goldenrod;
     background-color: transparent;
-    margin: 0 10px;
 }
 
 .modal > .buttons > .btn:hover {
@@ -59,4 +65,18 @@
 
 .border-error {
     border: 2px solid red;
+}
+
+@media only screen and (max-width: 550px) {
+    .modal {
+        width: 300px;
+    }
+
+    .modal > input[type="text"], select {
+        width: 280px;
+    }
+
+    .buttons {
+
+    }
 }
